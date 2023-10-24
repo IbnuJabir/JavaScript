@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quote Generator</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        font-style: italic;
+        color: gray;
+      }
+      #quote::before {
+        content: open-quote;
+      }
+      #quote::after {
+        content: close-quote;
+      }
+      .display{
+        margin: 5px auto 30px;
+        padding: 2em;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        font-size: 1.75rem;
+        color: blue;
+        font-weight: bold;
+        background: yellow;
+        border-radius: 1.5rem;
+      }
+      #generate{
+        padding: 25px 15px;
+        border-style: none;
+        width: 10rem;
+        margin: 40px 30px;
+      }
+      .input{
+        display: flex-direction;
+      }
+      .input > input{
+        padding: .5rem 1rem;
+        margin: 1rem .3rem;
+      }
+      
+      #Input-quote{
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+      }
+      #submit-quote,
+      #delete-quote{
+        border-style: none;
+        border-radius: 2rem;
+        color: whitesmoke;
+        padding: .75rem;
+      }
+      #submit-quote{
+          padding: 25px 15px;
+          background-color: limegreen;
+          color: white;
+        margin-left: 40px;
+      }
+      #delete-quote{
+        background-color: red;
+        padding: 25px 15px;
+      }
+      #Input-index{
+          width: 70%;
+      }
+      #Input-quote,
+      #submit-quote,
+      #delete-quote,
+      #quote,
+      #source{
+        font-size: 2rem;
+      }
+      #footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       align-items: center;
+      }
+      .radio > .label{
+        font-size: 2rem;
+        margin: 20px;
+      }
+      .input_holder{
+        margin-bottom: 20px;
+      }
+      .delet_holder{
+          margin: 30px;
+          display: flexbox;
+          flex-direction: row;
+          justify-content: center;
+      }
+      #quote{
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input_holder">
+        <input id="Input-quote" placeholder="   Type your quote here" type="text">
+        <input id="submit-quote" onclick="add_quote()" type="submit" value="Add Quote">
+    </div>
+    <div class="display">
+      <div id="quote">Choose from radio buttons and generate your quote.</div>
+      <div id="source"></div>
+    </div>
+    <div id="footer">
+      <div class="radio">
+        <input type="radio" id="quran" name="source" value="quran" checked>
+        <label for="quran" class="label">Quran</label>
+        <input type="radio" id="hadith" name="source" value="hadith">
+        <label for="hadith" class="label">Hadith</label>
+        <input type="radio" id="scholar" name="source" value="scholar">
+        <label for="scholar" class="label">Scholars</label>
+      </div>
+    <div class="delet_holder">
+        <input id="delete-quote" onclick="delete_quote()" type="button" value="Delete">
+      <button id="generate" onclick="generateQuote()">Generate</button> 
+    </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
