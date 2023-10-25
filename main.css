@@ -1,3 +1,7 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 body {
         display: flex;
         flex-direction: column;
@@ -43,9 +47,11 @@ body {
         margin: 1rem .3rem;
       }
       
-      #Input-quote{
+      #Input-quote,
+      #Input-source{
         border-radius: 1.5rem;
         padding: 1.5rem;
+        margin: 5px 0 5px 9rem;
       }
       #submit-quote,
       #delete-quote{
@@ -55,10 +61,10 @@ body {
         padding: .75rem;
       }
       #submit-quote{
-          padding: 25px 15px;
-          background-color: limegreen;
-          color: white;
-        margin-left: 40px;
+        padding: 25px 15px;
+        background-color: limegreen;
+        color: white;
+        margin-right: 5rem;
       }
       #delete-quote{
         background-color: red;
@@ -68,6 +74,7 @@ body {
           width: 70%;
       }
       #Input-quote,
+      #Input-source,
       #submit-quote,
       #delete-quote,
       #quote,
@@ -85,6 +92,9 @@ body {
         margin: 20px;
       }
       .input_holder{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         margin-bottom: 20px;
       }
       .delet_holder{

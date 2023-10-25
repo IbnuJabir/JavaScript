@@ -6,10 +6,17 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
+    <form>
     <div class="input_holder">
-        <input id="Input-quote" placeholder="   Type your quote here" type="text">
-        <input id="submit-quote" onclick="add_quote()" type="submit" value="Add Quote">
+        <div>
+            <input id="Input-quote" placeholder="Type your quote here" type="text">
+            <input id="Input-source" placeholder="leave your source for a qoute" type="text">
+        </div>
+        <div class="add_btn">
+            <input id="submit-quote" onclick="add_quote()" type="submit" value="Add Quote">
+        </div>
     </div>
+    </form>
     <div class="display">
       <div id="quote">Choose from radio buttons and generate your quote.</div>
       <div id="source"></div>

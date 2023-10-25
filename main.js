@@ -72,18 +72,30 @@ const quotes = {
   
       function add_quote() {
         event.preventDefault();
+        var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
         var selectedCategory = document.querySelector('input[name="source"]:checked').value;
         var userInput = document.getElementById("Input-quote");
+        var userSource = document.getElementById("Input-source");
+        if (userInput.value != "" && userSource.value != ""){
         // Create a new quote object
         var newQuote = {
           text: userInput.value,
-          source: ` ${selectedCategory}`
+          source: userSource.value
         };
         // Add the new quote to the selected category
-        quotes[selectedCategory].push(newQuote);
-        localStorage.setItem("quotes", JSON.stringify(quotes));
-        console.log(quotes[selectedCategory]);
+        storedQuotes[selectedCategory].push(newQuote);
+        localStorage.setItem("quotes", JSON.stringify(storedQuotes));
+        console.log(storedQuotes[selectedCategory]);
         userInput.value = "";
+        userSource.value = "";
+        }
+        else{
+            if (userInput.value === "") {
+                alert("quote field can't be empty!");
+            }
+            else 
+                alert("source field can't be empty!");
+        }
       }
       
       function delete_quote() {
