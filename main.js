@@ -43,25 +43,25 @@ const quotes = {
         ]
       };
       
-      var generateBtn = document.getElementById('generate');
-      var quote = document.getElementById('quote');
-      var source = document.getElementById('source');
-      var add = document.getElementById('submit-quote');
-      var favBtn = document.getElementById('fav-btn');
+      let generateBtn = document.getElementById('generate');
+      let quote = document.getElementById('quote');
+      let source = document.getElementById('source');
+      let add = document.getElementById('submit-quote');
+      let favBtn = document.getElementById('fav-btn');
       const favs = [];
-      var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
+      let storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
       
-      var storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
-      var selectedCategory = document.querySelector('input[name="source"]:checked').value;
-      var currentQuote;
-      var currentSource;
+      let storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
+      let selectedCategory = document.querySelector('input[name="source"]:checked').value;
+      let currentQuote;
+      let currentSource;
       
       function generateQuote() {
-        var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
-        var storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
-        var selectedSource = document.querySelector('input[name="source"]:checked').value;
-        var selectedQuotes = storedQuotes[selectedSource];
-        var randomQuote = selectedQuotes[Math.floor(Math.random() * selectedQuotes.length)];
+        let storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
+        let storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
+        let selectedSource = document.querySelector('input[name="source"]:checked').value;
+        let selectedQuotes = storedQuotes[selectedSource];
+        let randomQuote = selectedQuotes[Math.floor(Math.random() * selectedQuotes.length)];
         currentQuote = randomQuote.text;
         currentSource = randomQuote.source;
         quote.textContent = randomQuote.text;
@@ -71,7 +71,7 @@ const quotes = {
         } else {
           source.textContent = "";
         }
-        var isTextFound = storedfavs.some(item => item.text === currentQuote);
+        let isTextFound = storedfavs.some(item => item.text === currentQuote);
         if (isTextFound) {
             favBtn.style.color  = "red";
             favBtn.style.transition = "width 2s ease-in-out";
@@ -85,13 +85,13 @@ const quotes = {
   
       function add_quote() {
         event.preventDefault();
-        var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
-        var selectedCategory = document.querySelector('input[name="source"]:checked').value;
-        var userInput = document.getElementById("Input-quote");
-        var userSource = document.getElementById("Input-source");
+        let storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
+        let selectedCategory = document.querySelector('input[name="source"]:checked').value;
+        let userInput = document.getElementById("Input-quote");
+        let userSource = document.getElementById("Input-source");
         if (userInput.value != "" && userSource.value != ""){
         // Create a new quote object
-        var newQuote = {
+        let newQuote = {
           text: userInput.value,
           source: userSource.value
         };
@@ -114,11 +114,11 @@ const quotes = {
       }
       
       function delete_quote() {
-          var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
-          var selectedCategory = document.querySelector('input[name="source"]:checked').value;
-          var selectedQuotes = storedQuotes[selectedCategory];
+          let storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
+          let selectedCategory = document.querySelector('input[name="source"]:checked').value;
+          let selectedQuotes = storedQuotes[selectedCategory];
       
-          for (var i = 0; i < selectedQuotes.length; i++) {
+          for (let i = 0; i < selectedQuotes.length; i++) {
               if (currentQuote === selectedQuotes[i].text && currentSource === selectedQuotes[i].source) {
                   selectedQuotes.splice(i, 1);
                   break;
@@ -143,8 +143,8 @@ const quotes = {
         }
     }
     function addFav(){
-        var storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
-        var newQuote = {
+        let storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
+        let newQuote = {
             text: currentQuote,
             source: currentSource
         };
@@ -154,7 +154,7 @@ const quotes = {
         console.log(storedfavs);
     }
     function removeFav(){
-              for (var i = 0; i < storedfavs.length; i++) {
+              for (let i = 0; i < storedfavs.length; i++) {
               if (currentQuote === storedfavs[i].text && currentSource === storedfavs[i].source) {
                   storedfavs.splice(i, 1);
                   break;
