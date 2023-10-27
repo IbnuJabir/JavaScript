@@ -4,22 +4,22 @@
     <meta charset="utf-8">
     <title>Quote Generator</title>
     <link rel="stylesheet" href="main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   </head>
   <body>
     <form>
-    <div class="input_holder">
-        <div>
             <input id="Input-quote" placeholder="Type your quote here" type="text">
             <input id="Input-source" placeholder="leave your source for a qoute" type="text">
-        </div>
-        <div class="add_btn">
-            <input id="submit-quote" onclick="add_quote()" type="submit" value="Add Quote">
-        </div>
-    </div>
+            
+            <input id="submit-quote" type="submit" value="Add Quote" onclick="add_quote()">
     </form>
     <div class="display">
       <div id="quote">Choose from radio buttons and generate your quote.</div>
       <div id="source"></div>
+    </div>
+    <div class="fav-hold">
+        <button onclick="toogle()" id="fav-btn" class="btn"><i class="fas fa-heart"></i></button>
+        <label>Add to Favourite</label>
     </div>
     <div id="footer">
       <div class="radio">

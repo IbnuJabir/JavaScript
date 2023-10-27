@@ -106,3 +106,24 @@ body {
       #quote{
         margin-bottom: 20px;
       }
+      #heart-icon{
+        text-align: center;
+        color: red;
+      }
+      #fav-btn{
+        background: transparent;
+        border: none;
+        font-size: 48px;
+        outline: none;
+        color: gray;
+      }
+      #fav-btn i:hover{
+        cursor: pointer;  
+        color: red;
+      }
+      .fav-hold{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+      }

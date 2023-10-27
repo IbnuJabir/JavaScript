@@ -46,26 +46,39 @@ const quotes = {
       var generateBtn = document.getElementById('generate');
       var quote = document.getElementById('quote');
       var source = document.getElementById('source');
-      document.addEventListener('DOMContentLoaded', function() {
-          var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
-      });
+      var add = document.getElementById('submit-quote');
+      var favBtn = document.getElementById('fav-btn');
+      const favs = [];
+      var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
+      
+      var storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
       var selectedCategory = document.querySelector('input[name="source"]:checked').value;
       var currentQuote;
+      var currentSource;
       
       function generateQuote() {
         var storedQuotes = JSON.parse(localStorage.getItem("quotes")) || {};
-  
+        var storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
         var selectedSource = document.querySelector('input[name="source"]:checked').value;
         var selectedQuotes = storedQuotes[selectedSource];
         var randomQuote = selectedQuotes[Math.floor(Math.random() * selectedQuotes.length)];
         currentQuote = randomQuote.text;
-        
+        currentSource = randomQuote.source;
         quote.textContent = randomQuote.text;
         
         if (randomQuote.source) {
           source.textContent = `- ${randomQuote.source}`;
         } else {
           source.textContent = "";
+        }
+        var isTextFound = storedfavs.some(item => item.text === currentQuote);
+        if (isTextFound) {
+            favBtn.style.color  = "red";
+            favBtn.style.transition = "width 2s ease-in-out";
+        }
+        else{
+            favBtn.style.color = "grey";
+            favBtn.style.transition = "width 2s ease-in-out";
         }
         console.log(selectedQuotes);
       }
@@ -90,6 +103,8 @@ const quotes = {
         userSource.value = "";
         }
         else{
+            /*this.setCustomValidity('add your source!');
+            this.setCustomValidity('');*/
             if (userInput.value === "") {
                 alert("quote field can't be empty!");
             }
@@ -104,7 +119,7 @@ const quotes = {
           var selectedQuotes = storedQuotes[selectedCategory];
       
           for (var i = 0; i < selectedQuotes.length; i++) {
-              if (currentQuote === selectedQuotes[i].text) {
+              if (currentQuote === selectedQuotes[i].text && currentSource === selectedQuotes[i].source) {
                   selectedQuotes.splice(i, 1);
                   break;
               }
@@ -114,3 +129,37 @@ const quotes = {
       
           generateQuote();
       }
+    
+    function toogle(){
+        if (favBtn.style.color == "red") {
+            favBtn.style.color = "grey";
+            favBtn.style.transition =  "width 2s ease-in-out";
+            removeFav();
+        }
+        else {
+            favBtn.style.color = "red";
+            favBtn.style.transition =  "width 2s ease-in-out";
+            addFav();
+        }
+    }
+    function addFav(){
+        var storedfavs = JSON.parse(localStorage.getItem("favs")) || {};
+        var newQuote = {
+            text: currentQuote,
+            source: currentSource
+        };
+        // Add the new quote to the selected category
+        storedfavs.push(newQuote);
+        localStorage.setItem("favs", JSON.stringify(storedfavs));
+        console.log(storedfavs);
+    }
+    function removeFav(){
+              for (var i = 0; i < storedfavs.length; i++) {
+              if (currentQuote === storedfavs[i].text && currentSource === storedfavs[i].source) {
+                  storedfavs.splice(i, 1);
+                  break;
+              }
+          }
+          localStorage.setItem("favs", JSON.stringify(storedfavs));
+          console.log(storedfavs);
+    }
